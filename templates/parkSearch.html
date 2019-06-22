@@ -1,0 +1,120 @@
+<html>
+    <!-- Top of page, information and navigation between home and search pages -->
+    <head>
+        <title>NPS Information Kiosk</title>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    </head>
+    <body>
+        <h1 id="pageHeadTitle"> United States National Park Service Information Kiosk</h1>
+        <div class="topnav">
+            <a href="/">Home</a>
+            <a href="parkSearch.html">Search Parks</a>
+        </div>
+        <p><b>Enter your search criteria below. You may choose to leave fields blank.</b> </p>
+        <p><b>To yield the best search results, please specify as many fields as possible.</b></p>
+        <form action = "/result" method = "POST">
+            <!-- search field for textual input -->
+            <p>Search by Keyword or Park Name: <input type="text" name="keyword"></p>
+            <p>
+                <!-- search field to select a state -->
+                <label>Search by State:</label>
+                <select id = "stateList" name="state">
+                    <option value = "unspecified">--</option>
+                    <option value = "AL">Alabama - AL</option>
+                    <option value = "AK">Alaska - AK</option>
+                    <option value = "AZ">Arizona - AZ</option>
+                    <option value = "AR">Arkansas - AR</option>
+                    <option value = "CA">California - CA</option>
+                    <option value = "CO">Colorado - CO</option>
+                    <option value = "CT">Connecticut - CT</option>
+                    <option value = "DE">Delaware - DE</option>
+                    <option value = "FL">Florida - FL</option>
+                    <option value = "GA">Georgia - GA</option>
+                    <option value = "HI">Hawaii - HI</option>
+                    <option value = "ID">Idaho - ID</option>
+                    <option value = "IL">Illinois - IL</option>
+                    <option value = "IN">Indiana - IN</option>
+                    <option value = "IA">Iowa - IA</option>
+                    <option value = "KS">Kansas - KS</option>
+                    <option value = "KY">Kentucky - KY</option>
+                    <option value = "LA">Louisiana - LA</option>
+                    <option value = "ME">Maine - ME</option>
+                    <option value = "MD">Maryland - MD</option>
+                    <option value = "MA">Massachusetts - MA</option>
+                    <option value = "MI">Michigan - MI</option>
+                    <option value = "MN">Minnesota - MN</option>
+                    <option value = "MS">Mississippi - MS</option>
+                    <option value = "MO">Missouri - MO</option>
+                    <option value = "MT">Montana - MT</option>
+                    <option value = "NE">Nebraska - NE</option>
+                    <option value = "NV">Nevada - NV</option>
+                    <option value = "NH">New Hampshire - NH</option>
+                    <option value = "NJ">New Jersey - NJ</option>
+                    <option value = "NM">New Mexico - NM</option>
+                    <option value = "NY">New York - NY</option>
+                    <option value = "NC">North Carolina - NC</option>
+                    <option value = "ND">North Dakota - ND</option>
+                    <option value = "OH">Ohio - OH</option>
+                    <option value = "OK">Oklahoma - OK</option>
+                    <option value = "OR">Oregon - OR</option>
+                    <option value = "PA">Pennsylvania - PA</option>
+                    <option value = "RI">Rhode Island - RI</option>
+                    <option value = "SC">South Carolina - SC</option>
+                    <option value = "SD">South Dakota - SD</option>
+                    <option value = "TN">Tennessee - TN</option>
+                    <option value = "TX">Texas - TX</option>
+                    <option value = "UT">Utah - UT</option>
+                    <option value = "VT">Vermont - VT</option>
+                    <option value = "VA">Virginia - VA</option>
+                    <option value = "WA">Washington - WA</option>
+                    <option value = "WV">West Virginia - WV</option>
+                    <option value = "WI">Wisconsin - WI</option>
+                    <option value = "WY">Wyoming - WY</option>
+                </select>
+            </p>
+            <p>
+                <!-- search field to select a type of park -->
+                <label>Search by Park Designation:</label>
+                <select id = "designationList" name="designation">
+                    <option value = "unspecified">--</option>
+                    <option value = "National Historical Park">National Historical Park</option>
+                    <option value = "National Park">National Park</option>
+                    <option value = "National Monument">National Monument</option>
+                    <option value = "National Historic Trail">National Historic Trail</option>
+                    <option value = "Wild River">Wild River</option>
+                    <option value = "National Historic Area">National Historic Area</option>
+                    <option value = "National Historic Site">National Historic Site</option>
+                    <option value = "Recreation Area">Recreation Area</option>
+                    <option value = "National Monument & Preserve">National Monument & Preserve</option>
+                    <option value = "National Battlefield">National Battlefield</option>
+                    <option value = "National Lakeshore">National Lakeshore</option>
+                    <option value = "National Scenic Trail">National Scenic Trail</option>
+                    <option value = "Heritage Area">National Heritage Area</option>
+                    <option value = "National Memorial">National Memorial</option>
+                    <option value = "National Seashore">National Seashore</option>
+                    <option value = "Parkway">Parkway</option>
+                    <option value = "National Preserve">National Preserve</option>
+                    <option value = "National River">National River</option>
+                    <option value = "Scenic River">Scenic River</option>
+                    <option value = "Park">Park</option>
+                    <option value = "Ecological Preserve">Ecological Preserve</option>
+                    <option value = "National Park & Preserve">National Park & Preserve</option>
+                    <option value = "National Historical Reserve">National Historical Reserve</option>
+                    <option value = "National Heritage Partnership">National Heritage Partnership</option>
+                    <option value = "National Military Park">National Military Park</option>
+                    <option value = "National Reserve">National Reserve</option>
+                    <option value = "Heritage Corridor">Heritage Corridor</option>
+                    <option value = "Part of Statue of Liberty National Monument">Part of Statue of Liberty National Monument</option>
+                    <option value = "National Monument and Historic Shrine">National Monument and Historic Shrine</option>
+                    <option value = "Memorial Parkway">Memorial Parkway</option>
+                    <option value = "National Geologic Trail">National Geologic Trail</option>
+                    <option value = "Recreational River">Recreational River</option>
+                    <option value = "International Park">International Park</option>
+                    <option value = "International Historic Site">International Historic Site</option>
+                    <option value = "Affiliated Area">Affiliated Area</option>
+                </select>
+            </p>
+            <p><input type="submit" value="Search"></p>
+        </form>
+    </body>
+</html>
