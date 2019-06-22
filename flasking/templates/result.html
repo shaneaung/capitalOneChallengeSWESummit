@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+    <!-- Top of page, information and navigation between home and search pages -->
+    <head>
+        <title>NPS Information Kiosk</title>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    </head>
+    <body>
+        <h1 id="pageHeadTitle"> United States National Park Service Information Kiosk</h1>
+        <div class="topnav">
+            <a href="/">Home</a>
+            <a href="parkSearch.html">Search Parks</a>
+        </div>
+        <!-- display results with link to park info page for each -->
+        <p><b>{{ responseMessage }}</b></p>
+        <table>
+            {% for key, value in resultsDict.items() %}
+            <tr>
+                <td> 
+                    <a href="parkInformation.html/{{ key }}">{{ value }}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
