@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+    <!-- Top of page, information and navigation between home and search pages -->
+    <head>
+        <title>NPS Information Kiosk</title>
+        <link rel= "stylesheet" type= "text/css" href= "{{url_for('static',filename='styles/style.css')}}">
+    </head>
+    <body>
+        <h1 id="pageHeadTitle"> United States National Park Service Information Kiosk</h1>
+        <div class="topnav">
+            <a href="/">Home</a>
+            <a href="/parkSearch.html">Search Parks</a>
+        </div>
+        
+        <!-- park information begins, name and photos -->
+
+        <h2 align="center">{{fullName}}</h2> 
+        <table align="center">         
+            <tr>
+                {% for key, value in imgDict.items() %}
+                <td> 
+                    <img src={{value}} alt=" hello" height=200 >
+                </td>
+                {% endfor %}
+            </tr>
+        </table>
+        <p align="center"></p>
+        <!-- park description info, weather, directions, and google map insertt -->
+        <table align="center">         
+            <tr>
+                <td>
+                    <p>{{description}} More information on {{fullName}} can be found at <a href={{url}}>this link</a>.</p>
+                    <p><u>Weather Information:</u> {{weatherInfo}}</p>
+                    <p><u>Directions:</u> {{directionsInfo}} More information regarding directions can be found at <a href={{directionsUrl}}>this link</a>.</p>
+                </td>
+                <td> 
+                    <!-- code for embedding google maps to site obtained from https://www.embedgooglemap.net/ -->
+                    <div class="mapouter" align="center"><div class="gmap_canvas" align="center"><iframe align="center" width="600" height="350" id="gmap_canvas" src="https://maps.google.com/maps?q={{mappable}}&t=&z=9&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="25" marginwidth="25"></iframe></div><style>.mapouter{position:relative;text-align:right;height:383px;width:763px;display:block;}.gmap_canvas {overflow:hidden;background:none!important;height:383px;width:763px;display:block;}</style></div>
+                </td>
+            </tr>
+        </table>
+        <p>   </p>
+        <p>   </p>
+        <!-- section for displaying additional information related to park -->
+        <div class="topnav2">
+            <a href="/park.alerts.html/{{ id }}">Alerts</a>
+            <a href="/park.articles.html/{{ id }}">Articles</a>
+            <a href="/park.campgrounds.html/{{ id }}">Campgrounds</a>
+            <a href="/park.events.html/{{ id }}">Events</a>
+            <a href="/park.lessonplans.html/{{ id }}">Lessons</a>
+            <a href="/park.newsreleases.html/{{ id }}">News Releases</a>
+            <a href="/park.people.html/{{ id }}">People</a>
+            <a href="/park.places.html/{{ id }}">Places</a>
+            <a href="/park.visitorcenters.html/{{ id }}">Visitor Centers</a>
+        </div>
+
+        <!-- iterates through the present additional information category selected and displays it all -->
+        <p><b>{{reqMessage}}</b></p>
+        <table align="center">         
+        {% for key, innerDict in reqDict.items() %}
+        <tr>
+            {% for innerKey, value in innerDict.items() %}
+            <p><a href="{{innerKey}}">{{key}}</a>: {{value}}</p>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        {% for key, innerDict in alertDict.items() %}
+        <tr>
+            {% for innerKey, value in innerDict.items() %}
+            <p><b><u>({{innerKey}})</u></b> {{key}}: {{value}}</p>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        {% for key, valueDict in campDict.items() %}
+        <tr>
+            <p><u>{{key}}</u>: {{valueDict["description"]}}</p>
+        </tr>
+        {% endfor %}
+
+        {% for key, valueDict in visitDict.items() %}
+        <tr>            
+            <p><a href="{{valueDict["url"]}}"">{{key}}</a>: {{valueDict["description"]}} </p>
+            <p>Directions: {{valueDict["directionsInfo"]}} </p>
+        </tr>
+        {% endfor %}
+        {% for key, valueDict in eventDict.items() %}
+        <tr>
+            <p><a href="{{valueDict["url"]}}"">{{key}}</a>: {{valueDict["description"]}} </p>
+            <!-- <p>Location: {{valueDict["location"]}} </p> -->
+            <p>Dates: {{valueDict["dates"]}} </p>
+        </tr>
+        {% endfor %}
+   </body>
+</html>
